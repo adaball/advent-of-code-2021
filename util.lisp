@@ -21,3 +21,14 @@ of blank strings in the result."
                          tokens
                          :initial-value '())))
     result))
+
+(defun is-dir-p (pathspec)
+  "Determine whether PATHSPEC is a directory or not"
+  (and (probe-file pathspec)
+       (not (pathname-type pathspec))))
+
+(defun get-problem-input (pathspec)
+  (with-open-file (is pathspec :if-does-not-exist :error)
+    (loop for line = (read-line is nil nil)
+          while line
+          collect line)))
