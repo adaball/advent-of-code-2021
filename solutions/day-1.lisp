@@ -2,7 +2,6 @@
 
 (defvar *input* (map 'list #'parse-integer (utils:get-problem-input "input/day-1.txt")))
 
-;; answer: 1557
 (defun part-a ()
   (let* ((raw-answer (reduce (lambda (acc v)
                                (let* ((last-v  (car acc))
