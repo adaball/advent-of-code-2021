@@ -1,5 +1,7 @@
-(defpackage :advent-2021.util
-  :use #:cl)
+(defpackage :utils
+  (:use #:cl)
+  (:export :get-problem-input))
 
-(defpackage :advent-2021.sol
-  :use #:cl)
+(defpackage :solutions
+  (:use #:cl)
+  (:import-from :utils))

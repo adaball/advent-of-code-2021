@@ -1,10 +1,16 @@
-(in-package :advent-2021.sol)
+(in-package :solutions)
 
-;; (defun get-input-file ()
-;;   (let* (c-file (compile-file-pathname "day-1.lisp")
-;;          c-dir  ())))
+(defvar *input* (utils:get-problem-input "input/day-1.txt"))
 
-;;(defparameter *day1-input* (merge-pathnames (format nil "~A~A"
-;;                                                    *compile-file-pathname*
-;;                                                    "../input/day-1.txt")))
+;; answer: 1557
+(defun part-a ()
+  (let* ((raw-answer (reduce (lambda (acc v)
+                               (let* ((last-v  (car acc))
+                                      (counter (cadr acc)))
+                                 (if (and (not (equal nil last-v)) (> v last-v))
+                                     (list v (1+ counter))
+                                     (list v counter))))
+                             (map 'list #'parse-integer *input*)
+                             :initial-value (list nil 0))))
+    (cadr raw-answer)))
 
