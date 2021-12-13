@@ -11,3 +11,6 @@ for it, but I didn't want to dig around."
                         :collect line))))
     (close is)
     lines))
+
+(defun get-problem-input-int (pathspec)
+  (map 'list #'parse-integer (get-problem-input pathspec)))
