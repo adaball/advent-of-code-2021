@@ -1,6 +1,6 @@
 (defpackage :utils
   (:use #:cl)
-  (:export :get-problem-input :get-problem-input-int))
+  (:export :get-input :get-input-int))
 
 (defpackage :solutions
   (:use #:cl)

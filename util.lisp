@@ -12,5 +12,11 @@ for it, but I didn't want to dig around."
     (close is)
     lines))
 
-(defun get-problem-input-int (pathspec)
-  (map 'list #'parse-integer (get-problem-input pathspec)))
+(defun input-sym-to-path (file-sym)
+  (format nil "input/~(~A~).txt" file-sym))
+
+(defun get-input (file-sym)
+  (get-problem-input (input-sym-to-path file-sym)))
+
+(defun get-input-int (file-sym)
+  (map 'list #'parse-integer (get-input file-sym)))

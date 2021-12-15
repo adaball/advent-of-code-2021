@@ -1,17 +1,15 @@
 (in-package :solutions)
 
-(defvar *input* (utils:get-problem-input-int (format nil "~A~A"
-                                                     *default-pathname-defaults*
-                                                     "../input/day-1.txt")))
+(defvar *input-1* (utils:get-input-int :day-1))
 
-(defun part-a ()
+(defun problem-1a ()
   (let* ((raw-answer (reduce (lambda (acc v)
                                (let* ((last-v  (car acc))
                                       (counter (cadr acc)))
                                  (if (and (not (null last-v)) (> v last-v))
                                      (list v (1+ counter))
                                      (list v counter))))
-                             *input*
+                             *input-1*
                              :initial-value (list nil 0))))
     (first raw-answer)))
 
@@ -29,7 +27,7 @@
       (append window (list next-v))
       (append (rest window) (list next-v))))
 
-(defun part-b ()
+(defun problem-1b ()
   (let* ((tally 0)
          (prv-sum nil))
     (reduce (lambda (acc v)
@@ -39,6 +37,6 @@
                     (if (inc-tally-p acc prv-sum) (setf tally (1+ tally)))
                     (setf prv-sum (window-sum acc))
                     (next-window acc v))))
-            *input*
+            *input-1*
             :initial-value nil)
     tally))
