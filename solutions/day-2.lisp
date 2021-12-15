@@ -37,3 +37,19 @@ spliting on `#\Space`"
                    (process-input *input-2*)
                    :initial-value (cons 0 0))))
     (* (car raw-res) (cdr raw-res))))
+
+(defun problem-2b ()
+  (let* ((raw-res 
+           (reduce (lambda (acc v)
+                     (let* ((direction (first v))
+                            (amount (second v)))
+                       (cond
+                         ((string= "up" direction) (setf (third acc) (- (third acc) amount)))
+                         ((string= "down" direction) (setf (third acc) (+ (third acc) amount)))
+                         ((string= "forward" direction)
+                          (setf (first acc) (+ (first acc) amount))
+                          (setf (second acc) (+ (second acc) (* (third acc) amount)))))
+                       acc))
+                   (process-input *input-2*)
+                   :initial-value (list 0 0 0))))
+    (* (first raw-res) (second raw-res))))
